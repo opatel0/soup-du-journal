@@ -12,8 +12,8 @@ Vite/React, JSX, Express, Mongoose, Node
 | PUT | /:user | UPDATE | Edit user account info | Server |
 | DELETE | /:user | DELETE | Delete user account | Server |
 | GET | /dashboard | READ | Index public feed | Client |
-| GET | /:user/journeys | READ | Index all created journeys | Client |
-| GET | /:user/:journey | READ | Show journey | Client |
+| GET | /:user/journeys | READ | Index all created journeys | Server |
+| GET | /:user/:journey | READ | Show journey | Server |
 | GET | /journey | READ | Present create journey form | Client |
 | POST | /:user/:journey | CREATE | Create new journey | Server |
 | GET | /:user/:journey/edit | READ | Present update journey form | Client |

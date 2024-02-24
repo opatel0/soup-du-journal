@@ -27,7 +27,8 @@ router.put('/:user', (req, res) => {
         req.params.user,
         req.body,
         {new: true}
-    ).then(user => res.json(user))
+    )
+        .then(user => res.json(user))
 })
 
 router.delete('/:user', (req, res) => {
