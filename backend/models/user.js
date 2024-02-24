@@ -1,5 +1,5 @@
 // Require the Mongoose package
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 // Create a schema to define the properties of the comment collection
 const userSchema = new mongoose.Schema(

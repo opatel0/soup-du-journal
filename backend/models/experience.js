@@ -1,5 +1,5 @@
 // Require the Mongoose package
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 // Create a schema to define the properties of the comment collection
 const experienceSchema = new mongoose.Schema(
@@ -14,4 +14,4 @@ const experienceSchema = new mongoose.Schema(
 
 // Export the schema as a Monogoose model. 
 // The Mongoose model will be accessed in `models/index.js`
-module.exports = mongoose.model('Experience', experienceSchema);
+module.exports = mongoose.model('Experience', experienceSchema)

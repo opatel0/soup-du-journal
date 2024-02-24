@@ -34,7 +34,7 @@ app.use(express.json())
 
 /* Mount routes
 ---------------------------------------------------------- */
-
+app.use('/api/users', usersCtrl)
 
 /* Tell the app to listen on the specified port
 ---------------------------------------------------------- */
