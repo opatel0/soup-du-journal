@@ -13,7 +13,7 @@ const db = require('../models')
 /* Routes
 ---------------------------------------------------------- */
 router.get('/:user', (req, res) => {
-    db.User.findOne({_id: req.params.user})
+    db.User.findOne({ _id: req.params.user })
         .then(user => res.json(user))
 })
 
@@ -26,21 +26,23 @@ router.put('/:user', (req, res) => {
     db.User.findByIdAndUpdate(
         req.params.user,
         req.body,
-        {new: true}
+        { new: true }
     )
         .then(user => res.json(user))
 })
 
 // Delete all journeys associated with user - DONE
-// Delete all experiences associated with user
+// Delete all experiences associated with user - DONE
 router.delete('/:user', async (req, res) => {
     await db.User.findByIdAndDelete(req.params.user)
-        .then( async (user) => {
-            for (let journey of user.journeys) {
+        .then(async (user) => {
+            user.journeys.forEach(async journey => {
                 await db.Journey.findByIdAndDelete(journey)
-                    .then(deletedJourney => console.log(deletedJourney))
-            }
-            await res.json({user})
+                    .then(async journey => journey.experiences.forEach(
+                        async experience => await db.Experience.findByIdAndDelete(experience)
+                    ))
+            })
+            res.json({ user })
     })
 })
 
