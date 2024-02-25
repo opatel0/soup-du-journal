@@ -22,12 +22,19 @@ router.get('/:journey', (req, res) => {
         .then(journey => res.json(journey))
 })
 
-router.post('/:user', (req, res) => {
-    db.Journey.create({
+// append user journey list
+router.post('/:user', async (req, res) => {
+    await db.Journey.create({
         description: req.body.description,
         user: req.params.user
     })
-        .then(journey => res.json(journey))
+        .then(async journey => {
+            await db.User.findByIdAndUpdate(
+                req.params.user,
+                { $push: {journeys: journey._id}}
+            )
+                .then(() => res.json(journey))
+        })
 })
 
 router.put('/:journey', (req, res) => {
@@ -39,6 +46,7 @@ router.put('/:journey', (req, res) => {
         .then(journey => res.json(journey))
 })
 
+// delete associated experiences, delete from user
 router.delete('/:journey', (req, res) => {
     db.Journey.findByIdAndDelete(req.params.journey)
         .then(() => res.json({deletedCommentId: req.params.journey}))

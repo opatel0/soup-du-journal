@@ -16,6 +16,7 @@ router.get('/:experience', (req, res) => {
         .then(experience => res.json(experience))
 })
 
+// append user experiences list and journey list
 router.post('/:user/:journey', (req, res) => {
     db.Experience.create({
         title: req.body.title,
@@ -35,6 +36,7 @@ router.put('/:experience', (req, res) => {
         .then(experience => res.json(experience))
 })
 
+// delete from experiences list and journey list
 router.delete('/:experience', (req, res) => {
     db.Experience.findByIdAndDelete(req.params.experience)
         .then(() => res.json({deletedCommentId: req.params.experience}))
