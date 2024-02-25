@@ -1,32 +1,42 @@
 # Soup Du Journal
 ## Technologies Used
 Vite/React, JSX, Express, Mongoose, Node
-## Route Table
-| **HTTP Method** | **URL** | **CRUD Action** | **Description** | **Client or Server Side Route**|
-| --- | --- | --- | --- | --- |
-| GET | / | READ | Present signup/login form | Client |
-| POST | /signup | CREATE | Create new user account | Server |
+## Routes
+### Server Side CRUD Routes
+| **HTTP Method** | **URL** | **CRUD Action** | **Description** |
+| --- | --- | --- | --- |
+| **Users** |
+| GET | /:user | READ | Show user account info |
+| POST | /signup | CREATE | Create new user account |
+| PUT | /:user | UPDATE | Edit user account info |
+| DELETE | /:user | DELETE | Delete user account |
+| **Journeys** |
+| GET | /:user/journeys | READ | Index all created journeys |
+| GET | /:user/:journey | READ | Show journey |
+| POST | /:user/:journey | CREATE | Create new journey |
+| PUT | /:user/:journey | UPDATE | Edit existing journey |
+| DELETE | /:user/:journey | DELETE | Delete existing journey |
+| **Experiences** |
+| GET | /:user/:experience | READ | Show details of a single journey |
+| POST | /:user/:experience | CREATE | Create new experience |
+| PUT | /:user/:experience | UPDATE | Edit existing experience |
+| DELETE | /:user/:experience | DELETE | Delete existing experience |
+| **Unimplemented** |
 | POST | /login | READ | Authenticate login credentials | Server |
-| GET | /:user | READ | Show user account info | Server |
-| GET | /:user/edit | READ | Present edit account form | Client |
-| PUT | /:user | UPDATE | Edit user account info | Server |
-| DELETE | /:user | DELETE | Delete user account | Server |
-| GET | /dashboard | READ | Index public feed | Client |
-| GET | /:user/journeys | READ | Index all created journeys | Server |
-| GET | /:user/:journey | READ | Show journey | Server |
-| GET | /journey | READ | Present create journey form | Client |
-| POST | /:user/:journey | CREATE | Create new journey | Server |
-| GET | /:user/:journey/edit | READ | Present update journey form | Client |
-| PUT | /:user/:journey | UPDATE | Edit existing journey | Server |
-| DELETE | /:user/:journey | DELETE | Delete existing journey | Server |
-| GET | /:user/:journey/experiences | READ | Index all created experiences per journey | Client |
-| GET | /:user/experiences | READ | Index all created experiences per user | Client |
-| GET | /:user/:experience | READ | Show details of a single journey | Client |
-| GET | /experience | READ | Present create experience form | Client |
-| POST | /:user/:experience | CREATE | Create new experience | Server |
-| GET | /:user/:experience/edit | READ | Present update experience form | Client |
-| PUT | /:user/:experience | UPDATE | Edit existing experience | Server |
-| DELETE | /:user/:experience | DELETE | Delete existing experience | Server |
+| GET | /:user/:journey/experiences | READ | Index all created experiences per journey | Server |
+| GET | /:user/experiences | READ | Index all created experiences per user | Server |
+| GET | /dashboard | READ | Index public feed |
+
+### Client Side Routes
+| **HTTP Method** | **URL** | **CRUD Action** | **Description** |
+| --- | --- | --- | --- |
+| GET | / | READ | Present signup/login form |
+| GET | /:user/edit | READ | Present edit account form |
+| GET | /journey | READ | Present create journey form |
+| GET | /:user/:journey/edit | READ | Present update journey form |
+| GET | /experience | READ | Present create experience form |
+| GET | /:user/:experience/edit | READ | Present update experience form |
+
 <details>
     <summary>Planning Resources</summary>
     <h2>ERD</h2>
