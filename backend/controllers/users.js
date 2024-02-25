@@ -31,7 +31,8 @@ router.put('/:user', (req, res) => {
         .then(user => res.json(user))
 })
 
-// Delete all journeys and experiences associate with user
+// Delete all journeys associated with user - DONE
+// Delete all experiences associated with user
 router.delete('/:user', async (req, res) => {
     await db.User.findByIdAndDelete(req.params.user)
         .then( async (user) => {

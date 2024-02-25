@@ -22,7 +22,7 @@ router.get('/:journey', (req, res) => {
         .then(journey => res.json(journey))
 })
 
-// append user journey list
+// append user journey list - DONE
 router.post('/:user', async (req, res) => {
     await db.Journey.create({
         description: req.body.description,
@@ -46,7 +46,8 @@ router.put('/:journey', (req, res) => {
         .then(journey => res.json(journey))
 })
 
-// delete associated experiences, delete from user
+// delete associated experiences 
+// delete associated journies from user
 router.delete('/:journey', (req, res) => {
     db.Journey.findByIdAndDelete(req.params.journey)
         .then(() => res.json({deletedCommentId: req.params.journey}))
