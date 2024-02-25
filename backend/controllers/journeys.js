@@ -56,7 +56,7 @@ router.delete('/:journey', async (req, res) => {
                 {$pull: {journeys: journey._id}},
                 {new: true}
             )
-            .then(async (user) => await res.json(user))
+            .then(async (user) => res.json(user))
         })
 })
 

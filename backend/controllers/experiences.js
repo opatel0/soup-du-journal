@@ -16,16 +16,30 @@ router.get('/:experience', (req, res) => {
         .then(experience => res.json(experience))
 })
 
-// append user experiences list 
-// append journey list
-router.post('/:user/:journey', (req, res) => {
+// append user experiences list - DONE
+// append journey list - DONE
+router.post('/:user/:journey', async (req, res) => {
     db.Experience.create({
         title: req.body.title,
         content: req.body.content,
         user: req.params.user,
         journey: req.params.journey
     })
-        .then(experience => res.json(experience))
+        .then(async experience => {
+            await db.Journey.findByIdAndUpdate(
+                req.params.journey,
+                {$push: {experiences: experience._id}},
+                {new: true}
+            )
+            .then(async () => {
+                await db.User.findByIdAndUpdate(
+                    req.params.user,
+                    {$push: {experiences: experience._id}},
+                    {new: true}
+                )
+                res.json(experience)
+            })
+        })
 })
 
 router.put('/:experience', (req, res) => {
