@@ -36,6 +36,8 @@ app.use(express.json())
 ---------------------------------------------------------- */
 app.use('/api/users', usersCtrl)
 app.use('/api/journeys', journeysCtrl)
+app.use('/api/experiences', experiencesCtrl)
+
 
 /* Tell the app to listen on the specified port
 ---------------------------------------------------------- */
