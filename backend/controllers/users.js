@@ -32,9 +32,15 @@ router.put('/:user', (req, res) => {
 })
 
 // Delete all journeys and experiences associate with user
-router.delete('/:user', (req, res) => {
-    db.User.findByIdAndDelete(req.params.user)
-        .then(() => res.json({deletedCommentId: req.params.user}))
+router.delete('/:user', async (req, res) => {
+    await db.User.findByIdAndDelete(req.params.user)
+        .then( async (user) => {
+            for (let journey of user.journeys) {
+                await db.Journey.findByIdAndDelete(journey)
+                    .then(deletedJourney => console.log(deletedJourney))
+            }
+            await res.json({user})
+    })
 })
 
 
