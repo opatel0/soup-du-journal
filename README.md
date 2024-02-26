@@ -6,21 +6,21 @@ Vite/React, JSX, Express, Mongoose, Node
 | **HTTP Method** | **URL** | **CRUD Action** | **Description** |
 | --- | --- | --- | --- |
 | **Users** |
-| GET | /:user | READ | Show user account info |
-| POST | /signup | CREATE | Create new user account |
-| PUT | /:user | UPDATE | Edit user account info |
-| DELETE | /:user | DELETE | Delete user account |
+| GET | /users/:user | READ | Show user account info |
+| POST | /users/signup | CREATE | Create new user account |
+| PUT | /users/:user | UPDATE | Edit user account info |
+| DELETE | /users/:user | DELETE | Delete user account |
 | **Journeys** |
-| GET | /:user/journeys | READ | Index all created journeys |
-| GET | /:user/:journey | READ | Show journey |
-| POST | /:user/:journey | CREATE | Create new journey |
-| PUT | /:user/:journey | UPDATE | Edit existing journey |
-| DELETE | /:user/:journey | DELETE | Delete existing journey |
+| GET | /journeys/:user/journeys | READ | Index journeys per user |
+| GET | /journeys/:journey | READ | Show journey |
+| POST | /journeys/:user| CREATE | Create journey |
+| PUT | /journeys/:journey | UPDATE | Edit journey |
+| DELETE | /journeys/:journey | DELETE | Delete journey |
 | **Experiences** |
-| GET | /:user/:experience | READ | Show details of a single journey |
-| POST | /:user/:experience | CREATE | Create new experience |
-| PUT | /:user/:experience | UPDATE | Edit existing experience |
-| DELETE | /:user/:experience | DELETE | Delete existing experience |
+| GET | /experiences/:experience | READ | Show details of a single journey |
+| POST | /experiences/:user/:journey | CREATE | Create new experience |
+| PUT | /experiences/:experience | UPDATE | Edit existing experience |
+| DELETE /experiences| /:experience | DELETE | Delete existing experience |
 | **Unimplemented** |
 | POST | /login | READ | Authenticate login credentials | Server |
 | GET | /:user/:journey/experiences | READ | Index all created experiences per journey | Server |

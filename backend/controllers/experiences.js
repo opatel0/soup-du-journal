@@ -11,15 +11,15 @@ const db = require('../models')
 
 /* Routes
 ---------------------------------------------------------- */
+// Show experience
 router.get('/:experience', (req, res) => {
-    db.Experience.findOne({_id: req.params.experience})
+    db.Experience.findById(req.params.experience)
         .then(experience => res.json(experience))
 })
 
-// append user experiences list - DONE
-// append journey list - DONE
+// Create experience and append to user/journey lists
 router.post('/:user/:journey', async (req, res) => {
-    db.Experience.create({
+    await db.Experience.create({
         title: req.body.title,
         content: req.body.content,
         user: req.params.user,
@@ -28,20 +28,21 @@ router.post('/:user/:journey', async (req, res) => {
         .then(async experience => {
             await db.Journey.findByIdAndUpdate(
                 req.params.journey,
-                {$push: {experiences: experience._id}},
-                {new: true}
+                { $push: { experiences: experience._id }},
+                { new: true }
             )
             .then(async () => {
                 await db.User.findByIdAndUpdate(
                     req.params.user,
-                    {$push: {experiences: experience._id}},
-                    {new: true}
+                    { $push: { experiences: experience._id }},
+                    { new: true }
                 )
                 res.json(experience)
             })
         })
 })
 
+// Edit experience
 router.put('/:experience', (req, res) => {
     db.Experience.findByIdAndUpdate(
         req.params.experience,
@@ -51,8 +52,7 @@ router.put('/:experience', (req, res) => {
         .then(experience => res.json(experience))
 })
 
-// delete from user experiences list - DONE
-// delete from journey list - DONE
+// Delete experience and remove from user/journey lists
 router.delete('/:experience', async (req, res) => {
     await db.Experience.findByIdAndDelete(req.params.experience)
         .then(async experience => await db.Journey.findByIdAndUpdate(

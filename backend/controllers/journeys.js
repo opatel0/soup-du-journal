@@ -12,17 +12,19 @@ const db = require('../models')
 
 /* Routes
 ---------------------------------------------------------- */
+// Index journeys by user
 router.get('/:user/journeys', (req, res) => {
-    db.Journey.find({user: req.params.user})
+    db.Journey.find({ user: req.params.user })
         .then(journeys => res.json(journeys))
 })
 
+// Show journey
 router.get('/:journey', (req, res) => {
-    db.Journey.findOne({_id: req.params.journey})
+    db.Journey.findById(req.params.journey)
         .then(journey => res.json(journey))
 })
 
-// append user journey list - DONE
+// Create new journey and append id to user journeys list
 router.post('/:user', async (req, res) => {
     await db.Journey.create({
         description: req.body.description,
@@ -31,35 +33,36 @@ router.post('/:user', async (req, res) => {
         .then(async journey => {
             await db.User.findByIdAndUpdate(
                 req.params.user,
-                { $push: {journeys: journey._id}}
+                { $push: {journeys: journey._id}},
+                { new: true }
             )
                 .then(() => res.json(journey))
         })
 })
 
+// Edit journey
 router.put('/:journey', (req, res) => {
     db.Journey.findByIdAndUpdate(
         req.params.journey,
         req.body,
-        {new: true}
+        { new: true }
     )
         .then(journey => res.json(journey))
 })
 
-// delete associated journies from user - DONE
-// delete associated experiences - DONE
+// Delete journey, exeriences associated with journey, and associated journies per user
 router.delete('/:journey', async (req, res) => {
     await db.Journey.findByIdAndDelete(req.params.journey)
         .then(async (journey) => {
             await db.User.findByIdAndUpdate(
                 journey.user,
-                {$pull: {journeys: journey._id}},
-                {new: true}
+                { $pull: { journeys: journey._id }},
+                { new: true }
             )
-            .then(async (user) => {
-                for (let experience of journey.experiences) {
+            .then(user => {
+                journey.experiences.forEach(async experience => {
                     await db.Experience.findByIdAndDelete(experience)
-                }
+                })
                 res.json(user)
             })
         })

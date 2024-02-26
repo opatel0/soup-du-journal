@@ -12,16 +12,19 @@ const db = require('../models')
 
 /* Routes
 ---------------------------------------------------------- */
+// Show user account info
 router.get('/:user', (req, res) => {
-    db.User.findOne({ _id: req.params.user })
+    db.User.findById(req.params.user)
         .then(user => res.json(user))
 })
 
+// Create new user account
 router.post('/signup', (req, res) => {
     db.User.create(req.body)
         .then(user => res.json(user))
 })
 
+// Edit user account info
 router.put('/:user', (req, res) => {
     db.User.findByIdAndUpdate(
         req.params.user,
@@ -31,8 +34,7 @@ router.put('/:user', (req, res) => {
         .then(user => res.json(user))
 })
 
-// Delete all journeys associated with user - DONE
-// Delete all experiences associated with user - DONE
+// Delete user account and all associated journeys/experiences
 router.delete('/:user', async (req, res) => {
     await db.User.findByIdAndDelete(req.params.user)
         .then(async (user) => {
