@@ -51,12 +51,22 @@ router.put('/:experience', (req, res) => {
         .then(experience => res.json(experience))
 })
 
-// delete from user experiences list 
-// delete from journey list
-router.delete('/:experience', (req, res) => {
-    db.Experience.findByIdAndDelete(req.params.experience)
-        .then(() => res.json({deletedCommentId: req.params.experience}))
-})
+// delete from user experiences list - DONE
+// delete from journey list - DONE
+router.delete('/:experience', async (req, res) => {
+    await db.Experience.findByIdAndDelete(req.params.experience)
+        .then(async experience => await db.Journey.findByIdAndUpdate(
+            experience.journey,
+            { $pull: { experiences: req.params.experience }},
+            { new: true }
+        )
+            .then(async () => await db.User.findByIdAndUpdate(
+                experience.user,
+                { $pull: { experiences: req.params.experience }},
+                { new: true }
+            ))
+                .then(() => res.json(experience))
+)})
 
 
 /* Export these routes so that they are accessible in `server.js`
