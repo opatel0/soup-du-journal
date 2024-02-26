@@ -11,6 +11,18 @@ const db = require('../models')
 
 /* Routes
 ---------------------------------------------------------- */
+// Index experiences per user
+router.get('/:user/userexperiences', (req, res) => {
+    db.Experience.find({ user: req.params.user })
+        .then(experiences => res.json(experiences))
+})
+
+// Index experiences per journey
+router.get('/:journey/journeyexperiences', (req, res) => {
+    db.Experience.find({ journey: req.params.journey })
+        .then(experiences => res.json(experiences))
+})
+
 // Show experience
 router.get('/:experience', (req, res) => {
     db.Experience.findById(req.params.experience)

@@ -17,14 +17,14 @@ Vite/React, JSX, Express, Mongoose, Node
 | PUT | /journeys/:journey | UPDATE | Edit journey |
 | DELETE | /journeys/:journey | DELETE | Delete journey |
 | **Experiences** |
+| GET | /:user/userexperiences | READ | Index experiences per user |
+| GET | /:journey/journeyexperiences | READ | Index experiences per journey |
 | GET | /experiences/:experience | READ | Show details of a single journey |
 | POST | /experiences/:user/:journey | CREATE | Create new experience |
 | PUT | /experiences/:experience | UPDATE | Edit existing experience |
 | DELETE /experiences| /:experience | DELETE | Delete existing experience |
 | **Unimplemented** |
-| POST | /login | READ | Authenticate login credentials | Server |
-| GET | /:user/:journey/experiences | READ | Index all created experiences per journey | Server |
-| GET | /:user/experiences | READ | Index all created experiences per user | Server |
+| POST | /login | READ | Authenticate login credentials |
 | GET | /dashboard | READ | Index public feed |
 
 ### Client Side Routes
