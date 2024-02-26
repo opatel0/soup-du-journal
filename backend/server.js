@@ -34,6 +34,10 @@ app.use(express.json())
 
 /* Mount routes
 ---------------------------------------------------------- */
+app.get('/', (req, res) => {
+    db.Experience.find({})
+        .then(experiences => res.json(experiences))
+})
 app.use('/api/users', usersCtrl)
 app.use('/api/journeys', journeysCtrl)
 app.use('/api/experiences', experiencesCtrl)
