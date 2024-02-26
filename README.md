@@ -22,7 +22,7 @@ Vite/React, JSX, Express, Mongoose, Node
 | GET | /experiences/:experience | READ | Show details of a single journey |
 | POST | /experiences/:user/:journey | CREATE | Create new experience |
 | PUT | /experiences/:experience | UPDATE | Edit existing experience |
-| DELETE /experiences| /:experience | DELETE | Delete existing experience |
+| DELETE | /experiences/:experience | DELETE | Delete existing experience |
 | **Unimplemented** |
 | POST | /login | READ | Authenticate login credentials |
 | GET | /dashboard | READ | Index public feed |
