@@ -11,5 +11,6 @@ db.on('connected', () => {
 module.exports = {
     User: require('./user'),
     Journey: require('./journey'),
-    Experience: require('./experience')
+    Experience: require('./experience'),
+    Seed: require('./seed')
 }

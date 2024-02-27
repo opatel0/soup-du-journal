@@ -10,14 +10,12 @@ export default function Dashboard() {
     }, [])
 
     let experiencesEl = <p>Loading...</p>
-    if (experiences.length > 0) {
-        experiencesEl = experiences.map(experience => {
-            <div key={experience._id}>
-                <h2>{experience.title}</h2>
-                <p>{experience.content}</p>
-            </div>
-        })
-    }
+    experiencesEl = experiences.map(experience => (
+        <div key={experience._id}>
+            <h2>{experience.title}</h2>
+            <p>{experience.content}</p>
+        </div>
+    )) 
 
     return (
         <>

@@ -16,6 +16,7 @@ const db = require('./models');
 const usersCtrl = require('./controllers/users')
 const journeysCtrl = require('./controllers/journeys')
 const experiencesCtrl = require('./controllers/experiences')
+const seedCtrl = require('./controllers/seed')
 
 
 /* Create the Express app
@@ -38,6 +39,7 @@ app.get('/api', (req, res) => {
     db.Experience.find({})
         .then(experiences => res.json(experiences))
 })
+app.use('/api/seed', seedCtrl)
 app.use('/api/users', usersCtrl)
 app.use('/api/journeys', journeysCtrl)
 app.use('/api/experiences', experiencesCtrl)
