@@ -34,7 +34,7 @@ app.use(express.json())
 
 /* Mount routes
 ---------------------------------------------------------- */
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     db.Experience.find({})
         .then(experiences => res.json(experiences))
 })
