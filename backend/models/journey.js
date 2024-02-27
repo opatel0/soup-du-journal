@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const journeySchema = new mongoose.Schema(
     {
         description: { type: String, required: true },
-        user: { type: mongoose.Types.ObjectId, required: true },
+        user: { type: mongoose.Types.ObjectId, required: true, ref: 'User' },
         experiences: [mongoose.Types.ObjectId],
     },
     { timestamps: true }

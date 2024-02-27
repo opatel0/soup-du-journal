@@ -12,7 +12,7 @@ const db = require('./models');
 
 
 /* Require the routes in the controllers folder
---------------------------------------------------------------- */
+---------------------------------------------------------- */
 const usersCtrl = require('./controllers/users')
 const journeysCtrl = require('./controllers/journeys')
 const experiencesCtrl = require('./controllers/experiences')

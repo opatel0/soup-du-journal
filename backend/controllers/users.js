@@ -1,13 +1,15 @@
 /* Require modules
 ---------------------------------------------------------- */
+const jwt = require('jwt-simple')
 const express = require('express')
 // Router allows us to handle routing outisde of server.js
 const router = express.Router()
 
 
-/* Require the db connection, and models
+/* Require the db connection, models, and JWT config
 ---------------------------------------------------------- */
 const db = require('../models')
+const config = require('../../jwt.config.js')
 
 
 /* Routes
@@ -21,7 +23,30 @@ router.get('/:user', (req, res) => {
 // Create new user account
 router.post('/signup', (req, res) => {
     db.User.create(req.body)
-        .then(user => res.json(user))
+        .then(user => {
+            const token = jwt.encode({ id: user.id }, config.jwtSecret)
+            res.json({ token: token })
+        })
+        .catch(() => {
+            res.status(401)
+                .json({ message: 'Could not create a new user, try again' })
+        })
+})
+
+// Authenticate user
+router.post('/login', async (req, res) => {
+    const foundUser = await db.User.findOne({ username: req.body.username })
+    if (foundUser && foundUser.password === req.body.password) {
+        const payload = { id: foundUser.id }
+        const token = jwt.encode(payload, config.jwtSecret)
+        res.json({
+            token: token,
+            username: foundUser.username
+        })
+    } else {
+        res.status(401)
+	    .json({ message: 'Could not find user with that email/password' })
+    }
 })
 
 // Edit user account info
