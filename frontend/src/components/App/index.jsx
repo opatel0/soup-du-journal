@@ -34,7 +34,7 @@ export default function App() {
             </nav>
             {!loginStatus && 
                 <Routes>
-                    <Route path="/" element={<LandingPage />} />
+                    <Route path="/*" element={<LandingPage />} />
                     <Route path="/auth/:formType" element={<AuthFormPage setLoginStatus={setLoginStatus} />} />
                 </Routes>
             }
