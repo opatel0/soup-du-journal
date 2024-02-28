@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { signUp } from '../../../utils/backend'
+import { useNavigate, useParams } from 'react-router-dom'
+import { signUp, logIn } from '../../../utils/backend'
 
 export default function Signup() {
+    const { formType } = useParams()
     const [formData, setFormData] = useState({
         username: "",
         password: ""
@@ -16,10 +17,18 @@ export default function Signup() {
 
     async function handleSubmit(event) {
         event.preventDefault()
-        const { token } = await signUp(formData)
-        localStorage.setItem('userToken', token)
+        if (formType === 'login') {
+            const { token } = await logIn(formData)
+            localStorage.setItem('userToken', token)
+        } else {
+            const { token } = await signUp(formData)
+            localStorage.setItem('userToken', token)
+        }
         navigate('/dashboard')
     }
+
+    let actionText
+    formType === 'login' ? actionText = 'Log In' : actionText = 'Sign Up'
 
     return (
         <form onSubmit={handleSubmit}>
@@ -33,7 +42,7 @@ export default function Signup() {
                 value={formData.password}
                 onChange={handleInputChange}
             />
-            <button type="submit">Sign Up</button>
+            <button type="submit">{actionText}</button>
         </form>
     )
 }
