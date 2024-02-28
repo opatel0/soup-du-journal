@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { signUp } from '../../../utils/backend'
 
 export default function Signup() {
     const [formData, setFormData] = useState({
@@ -15,6 +16,8 @@ export default function Signup() {
 
     async function handleSubmit(event) {
         event.preventDefault()
+        const { token } = await signUp(formData)
+        localStorage.setItem('userToken', token)
         navigate('/dashboard')
     }
 
