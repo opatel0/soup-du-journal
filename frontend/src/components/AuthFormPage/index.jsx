@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { signUp, logIn } from '../../../utils/backend'
 
-export default function Signup() {
+export default function AuthFormPage({ setLoginStatus }) {
     const { formType } = useParams()
     const [formData, setFormData] = useState({
         username: "",
@@ -20,9 +20,11 @@ export default function Signup() {
         if (formType === 'login') {
             const { token } = await logIn(formData)
             localStorage.setItem('userToken', token)
+            setLoginStatus(true)
         } else {
             const { token } = await signUp(formData)
             localStorage.setItem('userToken', token)
+            setLoginStatus(true)
         }
         navigate('/dashboard')
     }
