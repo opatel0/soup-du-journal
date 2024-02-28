@@ -33,18 +33,24 @@ export default function AuthFormPage({ setLoginStatus }) {
     formType === 'login' ? actionText = 'Log In' : actionText = 'Sign Up'
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                name="username"
-                value={formData.username}
-                onChange={handleInputChange}
-            />
-            <input
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-            />
-            <button type="submit">{actionText}</button>
-        </form>
+        <>
+            <h1>{actionText}</h1>
+            <form onSubmit={handleSubmit}>
+                <input
+                    name="username"
+                    placeholder="username"
+                    value={formData.username}
+                    onChange={handleInputChange}
+                />
+                <input
+                    name="password"
+                    type="password"
+                    placeholder="password"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                />
+                <button type="submit">{actionText}</button>
+            </form>
+        </>
     )
 }

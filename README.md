@@ -8,6 +8,7 @@ Vite/React, JSX, Express, Mongoose, Node
 | **Users** |
 | GET | /users/:user | READ | Show user account info |
 | POST | /users/signup | CREATE | Create new user account |
+| POST | /login | READ | Authenticate login credentials |
 | PUT | /users/:user | UPDATE | Edit user account info |
 | DELETE | /users/:user | DELETE | Delete user account |
 | **Journeys** |
@@ -17,20 +18,19 @@ Vite/React, JSX, Express, Mongoose, Node
 | PUT | /journeys/:journey | UPDATE | Edit journey |
 | DELETE | /journeys/:journey | DELETE | Delete journey |
 | **Experiences** |
-| GET | /:user/userexperiences | READ | Index experiences per user |
-| GET | /:journey/journeyexperiences | READ | Index experiences per journey |
+| GET | experiences/dashboard | READ | Index experiences for public feed |
+| GET | experiences/:user/userexperiences | READ | Index experiences per user |
+| GET | experiences/:journey/journeyexperiences | READ | Index experiences per journey |
 | GET | /experiences/:experience | READ | Show details of a single journey |
 | POST | /experiences/:user/:journey | CREATE | Create new experience |
 | PUT | /experiences/:experience | UPDATE | Edit existing experience |
 | DELETE | /experiences/:experience | DELETE | Delete existing experience |
-| **Unimplemented** |
-| POST | /login | READ | Authenticate login credentials |
-| GET | /dashboard | READ | Index public feed |
 
 ### Client Side Routes
 | **HTTP Method** | **URL** | **CRUD Action** | **Description** |
 | --- | --- | --- | --- |
 | GET | / | READ | Present signup/login form |
+| **Unimplemented** |
 | GET | /:user/edit | READ | Present edit account form |
 | GET | /journey | READ | Present create journey form |
 | GET | /:user/:journey/edit | READ | Present update journey form |
