@@ -43,7 +43,8 @@ router.get('/', (req, res) => {
                                 await db.Experience.create({
                                     title: experience.title,
                                     content: experience.content,
-                                    user: user._id,
+                                    username: user.username,
+                                    userId: user._id,
                                     journey: journey._id,
                                 })
                                 .then(async experience => {

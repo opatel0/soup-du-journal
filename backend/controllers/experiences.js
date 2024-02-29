@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 
 // Index experiences per user
 router.get('/:user/userexperiences', (req, res) => {
-    db.Experience.find({ user: req.params.user })
+    db.Experience.find({ userId: req.params.user })
         .then(experiences => res.json(experiences))
 })
 
@@ -37,26 +37,30 @@ router.get('/:experience', (req, res) => {
 
 // Create experience and append to user/journey lists
 router.post('/:user/:journey', async (req, res) => {
-    await db.Experience.create({
-        title: req.body.title,
-        content: req.body.content,
-        user: req.params.user,
-        journey: req.params.journey
-    })
-        .then(async experience => {
-            await db.Journey.findByIdAndUpdate(
-                req.params.journey,
-                { $push: { experiences: experience._id }},
-                { new: true }
-            )
-            .then(async () => {
-                await db.User.findByIdAndUpdate(
-                    req.params.user,
-                    { $push: { experiences: experience._id }},
-                    { new: true }
-                )
-                res.json(experience)
+    await db.User.findById(req.params.user)
+        .then(async user => {
+            await db.Experience.create({
+                title: req.body.title,
+                content: req.body.content,
+                username: user.username,
+                userId: req.params.user,
+                journey: req.params.journey
             })
+                .then(async experience => {
+                    await db.Journey.findByIdAndUpdate(
+                        req.params.journey,
+                        { $push: { experiences: experience._id }},
+                        { new: true }
+                    )
+                    .then(async () => {
+                        await db.User.findByIdAndUpdate(
+                            req.params.user,
+                            { $push: { experiences: experience._id }},
+                            { new: true }
+                        )
+                        res.json(experience)
+                    })
+                })
         })
 })
 
@@ -79,7 +83,7 @@ router.delete('/:experience', async (req, res) => {
             { new: true }
         )
             .then(async () => await db.User.findByIdAndUpdate(
-                experience.user,
+                experience.userId,
                 { $pull: { experiences: req.params.experience }},
                 { new: true }
             ))

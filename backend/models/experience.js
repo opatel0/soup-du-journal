@@ -6,7 +6,8 @@ const experienceSchema = new mongoose.Schema(
     {
         title: { type: String, required: true },
         content: { type: String, required: true },
-        user: { type: mongoose.Types.ObjectId, required: true, ref: 'User' },
+        username: { type:String, required: true },
+        userId: { type: mongoose.Types.ObjectId, required: true, ref: 'User' },
         journey: { type: mongoose.Types.ObjectId, required: true, ref: 'Journey' },
     },
     { timestamps: true }
