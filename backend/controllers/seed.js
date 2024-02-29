@@ -27,6 +27,7 @@ router.get('/', (req, res) => {
                 .slice(i+journeyParserOffset, i+journeyParserOffset+1)
                 .forEach(async journey => {
                     await db.Journey.create({
+                        title: journey.title,
                         description: journey.description,
                         user: user._id
                     })
@@ -43,9 +44,10 @@ router.get('/', (req, res) => {
                                 await db.Experience.create({
                                     title: experience.title,
                                     content: experience.content,
+                                    journeyTitle: journey.title,
                                     username: user.username,
                                     userId: user._id,
-                                    journey: journey._id,
+                                    journeyId: journey._id,
                                 })
                                 .then(async experience => {
                                     await db.User.findByIdAndUpdate(

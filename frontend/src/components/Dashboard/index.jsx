@@ -15,8 +15,9 @@ export default function Dashboard() {
         let timeUpdated = new Date(experience.updatedAt)
         return (
             <div key={experience._id}>
-                <h2>{experience.title}</h2>
-                <p>{experience.username}</p>
+                <h2>Journal: {experience.journeyTitle}</h2>
+                <h3>{experience.title}</h3>
+                <p>By: {experience.username}</p>
                 <p>{experience.content}</p>
                 <p>Created: {timeCreated.toLocaleString()}</p>
                 {timeUpdated > timeCreated && <p>Last edited: {timeUpdated.toLocaleString()}</p>}

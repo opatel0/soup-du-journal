@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 // Create a schema to define the properties of the comment collection
 const journeySchema = new mongoose.Schema(
     {
+        title: { type: String, required: true },
         description: { type: String, required: true },
         user: { type: mongoose.Types.ObjectId, required: true, ref: 'User' },
         experiences: [mongoose.Types.ObjectId],

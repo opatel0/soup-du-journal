@@ -27,6 +27,7 @@ router.get('/:journey', (req, res) => {
 // Create new journey and append id to user journeys list
 router.post('/:user', async (req, res) => {
     await db.Journey.create({
+        title: req.body.title,
         description: req.body.description,
         user: req.params.user
     })
@@ -53,7 +54,7 @@ router.put('/:journey', (req, res) => {
 // Delete journey, exeriences associated with journey, and associated journies per user
 router.delete('/:journey', async (req, res) => {
     await db.Journey.findByIdAndDelete(req.params.journey)
-        .then(async (journey) => {
+        .then(async journey => {
             await db.User.findByIdAndUpdate(
                 journey.user,
                 { $pull: { journeys: journey._id }},
@@ -62,6 +63,11 @@ router.delete('/:journey', async (req, res) => {
             .then(user => {
                 journey.experiences.forEach(async experience => {
                     await db.Experience.findByIdAndDelete(experience)
+                    await db.User.findByIdAndUpdate(
+                        user._id,
+                        { $pull: { experiences: experience._id }},
+                        { new: true }
+                    )
                 })
                 res.json(user)
             })
