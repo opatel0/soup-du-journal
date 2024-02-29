@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react'
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route, Link, useNavigate } from 'react-router-dom'
 import LandingPage from '../LandingPage'
 import AuthFormPage from '../AuthFormPage'
 import Dashboard from '../Dashboard'
+import CreateJourney from '../Create/Journey'
+import CreateExperience from '../Create/Experience'
+import './styles.css'
 
 export default function App() {
     const [loginStatus, setLoginStatus] = useState(false)
@@ -17,21 +20,19 @@ export default function App() {
     let logout
     if (localStorage.length > 0) {
         logout = 
-            <button
+            <a><li 
+                className='nav'
                 onClick={() => {
                     localStorage.clear()
                     setLoginStatus(false)
                     navigate('/')
-                }}>
+            }}>
                 Log Out
-            </button>
+            </li></a>
     }
 
     return (
         <>
-            <nav>
-                {logout}
-            </nav>
             {!loginStatus && 
                 <Routes>
                     <Route path="/*" element={<LandingPage />} />
@@ -39,11 +40,21 @@ export default function App() {
                 </Routes>
             }
             {loginStatus && 
-                <Routes>
-                    <Route path="/" element={<Dashboard loginStatus={loginStatus} />} />
-                    <Route path="/dashboard" element={<Dashboard loginStatus={loginStatus} />} />
-                    <Route path="/auth/:formType" element={<AuthFormPage setLoginStatus={setLoginStatus} />} />
-                </Routes>
+                <>
+                    <nav>
+                        <li className="nav"><Link to="/dashboard">Dashboard</Link></li>
+                        <li className="nav"><Link to="/createjourney">Create Journey</Link></li>
+                        <li className="nav"><Link to="/createexperience">Create Experience</Link></li>
+                        {logout}
+                    </nav>
+                    <Routes>
+                        <Route path="/" element={<Dashboard loginStatus={loginStatus} />} />
+                        <Route path="/dashboard" element={<Dashboard loginStatus={loginStatus} />} />
+                        <Route path="/auth/:formType" element={<AuthFormPage setLoginStatus={setLoginStatus} />} />
+                        <Route path="/createjourney" element={<CreateJourney />} />
+                        <Route path="/createexperience" element={<CreateExperience />} />
+                    </Routes>
+                </>
             }
         </>
     )
