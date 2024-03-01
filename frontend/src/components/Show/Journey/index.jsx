@@ -29,6 +29,7 @@ export default function ShowJourney() {
         <>
             <h1>{details.title}</h1>
             <p>{details.description}</p>
+            <Link to={`/createexperience/${details._id}`}><button>Create Experience</button></Link>
             {experiencesEl}
         </>
     )

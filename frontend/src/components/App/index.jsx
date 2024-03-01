@@ -47,7 +47,6 @@ export default function App() {
                     <nav>
                         <li className="nav"><Link to="/dashboard">Dashboard</Link></li>
                         <li className="nav"><Link to="/createjourney">Create Journey</Link></li>
-                        <li className="nav"><Link to="/createexperience">Create Experience</Link></li>
                         {logout}
                     </nav>
                     <Routes>
@@ -57,7 +56,7 @@ export default function App() {
                         <Route path="/journey/:journeyId" element={<ShowJourney/>} />
                         <Route path="/experience/:experienceId" element={<ShowExperience details={experienceDetails} />} />
                         <Route path="/createjourney" element={<CreateJourney />} />
-                        <Route path="/createexperience" element={<CreateExperience />} />
+                        <Route path="/createexperience/:journeyId" element={<CreateExperience />} />
                     </Routes>
                 </>
             }
