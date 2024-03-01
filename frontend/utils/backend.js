@@ -14,3 +14,8 @@ export async function logIn(user) {
     const { data } = await axios.post('/api/users/login', user)
     return data
 }
+
+export async function getExperience(experienceId) {
+    const { data }  = await axios.get(`/api/experiences/${experienceId}`)
+    return data
+}

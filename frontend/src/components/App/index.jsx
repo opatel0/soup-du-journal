@@ -3,12 +3,14 @@ import { Routes, Route, Link, useNavigate } from 'react-router-dom'
 import LandingPage from '../LandingPage'
 import AuthFormPage from '../AuthFormPage'
 import Dashboard from '../Dashboard'
+import ShowExperience from '../Show/Experience'
 import CreateJourney from '../Create/Journey'
 import CreateExperience from '../Create/Experience'
 import './styles.css'
 
 export default function App() {
     const [loginStatus, setLoginStatus] = useState(false)
+    const [experienceDetails, setExperienceDetails] = useState({})
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -49,8 +51,9 @@ export default function App() {
                     </nav>
                     <Routes>
                         <Route path="/" element={<Dashboard loginStatus={loginStatus} />} />
-                        <Route path="/dashboard" element={<Dashboard loginStatus={loginStatus} />} />
+                        <Route path="/dashboard"element={<Dashboard updateExperienceDetails={setExperienceDetails} />} />
                         <Route path="/auth/:formType" element={<AuthFormPage setLoginStatus={setLoginStatus} />} />
+                        <Route path="/experience/:experienceId" element={<ShowExperience details={experienceDetails} />} />
                         <Route path="/createjourney" element={<CreateJourney />} />
                         <Route path="/createexperience" element={<CreateExperience />} />
                     </Routes>

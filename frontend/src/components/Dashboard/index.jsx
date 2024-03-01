@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { getDashboard } from '../../../utils/backend'
 
-export default function Dashboard() {
+export default function Dashboard({ updateExperienceDetails }) {
     const [experiences, setExperiences] = useState([])
 
     useEffect(() => {
@@ -12,15 +13,11 @@ export default function Dashboard() {
     let experiencesEl = <p>Loading...</p>
     experiencesEl = experiences.map(experience => {
         let timeCreated = new Date(experience.createdAt)
-        let timeUpdated = new Date(experience.updatedAt)
         return (
             <div key={experience._id}>
-                <h2>Journal: {experience.journeyTitle}</h2>
-                <h3>{experience.title}</h3>
-                <p>By: {experience.username}</p>
+                <Link to={`/experience/${experience._id}`} onClick={() => updateExperienceDetails(experience)}><h3>{experience.title}</h3></Link>
                 <p>{experience.content}</p>
                 <p>Created: {timeCreated.toLocaleString()}</p>
-                {timeUpdated > timeCreated && <p>Last edited: {timeUpdated.toLocaleString()}</p>}
             </div>
     )}) 
 
