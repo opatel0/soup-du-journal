@@ -17,6 +17,11 @@ export async function getJourney(journeyId) {
     return data
 }
 
+export async function getJourneyExperiences(journeyId) {
+    const { data } = await axios.get(`/api/experiences/${journeyId}/journeyexperiences`)
+    return data
+}
+
 
 /* AUTHENTICATION REQUESTS
 ------------------------------------------------------------------------ */
