@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import {getExperience } from '../../../../utils/backend'
+import { Link, useParams } from 'react-router-dom'
+import { getExperience } from '../../../../utils/backend'
 
 export default function ShowExperience(props) {
     const [details, setDetails] = useState({ ...props.details })
+    
     const params = useParams()
 
     useEffect(() => {
@@ -17,7 +18,7 @@ export default function ShowExperience(props) {
     let timeUpdated = new Date(details.updatedAt)
     return (
         <div>
-            <h2>Journal: {details.journeyTitle}</h2>
+            <Link to={`/journey/${details.journeyId}`}><h2>Journal: {details.journeyTitle}</h2></Link>
             <h3>{details.title}</h3>
             <p>By: {details.username}</p>
             <p>{details.content}</p>
