@@ -11,7 +11,7 @@ export default function ShowJourney() {
         getJourney(params.journeyId)
             .then(journey => setDetails(journey))
         getJourneyExperiences(params.journeyId)
-            .then(experienceList => {console.log(experienceList); setExperiences(experienceList)})
+            .then(experienceList => setExperiences(experienceList))
     }, [])
 
     let experiencesEl = <p>Loading...</p>
