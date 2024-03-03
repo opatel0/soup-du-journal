@@ -67,3 +67,9 @@ export async function editExperience(experience, experienceId) {
     const { data } = await axios.put(`/api/experiences/${experienceId}`, experience, authHeader)
     return data
 }
+
+export async function deleteExperience(experienceId) {
+    const authHeader = { headers: { 'Authorization': localStorage.getItem('userToken') }}
+    const { data } = await axios.delete(`/api/experiences/${experienceId}`, authHeader)
+    return data
+}
