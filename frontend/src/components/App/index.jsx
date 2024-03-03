@@ -59,7 +59,7 @@ export default function App() {
                         <Route path="/" element={<Dashboard loginStatus={loginStatus} />} />
                         <Route path="/dashboard"element={<Dashboard updateExperienceDetails={setExperienceDetails} />} />
                         <Route path="/auth/:formType" element={<AuthFormPage setLoginStatus={setLoginStatus} />} />
-                        <Route path="/account" element={<ShowUserAccount />} />
+                        <Route path="/account" element={<ShowUserAccount setLoginStatus={setLoginStatus} />} />
                         <Route path="/account/edit" element={<EditUserAccount />} />
                         <Route path="/journeys" element={<IndexJourneys />} />
                         <Route path="/journey/:journeyId" element={<ShowJourney updateExperienceDetails={setExperienceDetails} />} />

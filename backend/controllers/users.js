@@ -83,8 +83,8 @@ router.put('/', authMiddleware, (req, res) => {
 })
 
 // Delete user account and all associated journeys/experiences
-router.delete('/:user', async (req, res) => {
-    await db.User.findByIdAndDelete(req.params.user)
+router.delete('/', authMiddleware, async (req, res) => {
+    await db.User.findByIdAndDelete(req.user.id)
         .then(async (user) => {
             user.journeys.forEach(async journey => {
                 await db.Journey.findByIdAndDelete(journey)

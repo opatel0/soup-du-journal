@@ -50,6 +50,12 @@ export async function editUser(accountInfo) {
     return data
 }
 
+export async function deleteUser() {
+    const authHeader = { headers: { 'Authorization': localStorage.getItem('userToken') }}
+    const { data } = await axios.delete(`/api/users`, authHeader)
+    return data
+}
+
 export async function getUserJourneys() {
     const authHeader = { headers: { 'Authorization': localStorage.getItem('userToken') }}
     const { data } = await axios.get('/api/journeys', authHeader)
