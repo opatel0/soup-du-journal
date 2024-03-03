@@ -73,9 +73,9 @@ router.post('/login', async (req, res) => {
 })
 
 // Edit user account info
-router.put('/:user', (req, res) => {
+router.put('/', authMiddleware, (req, res) => {
     db.User.findByIdAndUpdate(
-        req.params.user,
+        req.user.id,
         req.body,
         { new: true }
     )

@@ -44,6 +44,12 @@ export async function getUser() {
     return data
 }
 
+export async function editUser(accountInfo) {
+    const authHeader = { headers: { 'Authorization': localStorage.getItem('userToken') }}
+    const { data } = await axios.put(`/api/users`, accountInfo, authHeader)
+    return data
+}
+
 export async function getUserJourneys() {
     const authHeader = { headers: { 'Authorization': localStorage.getItem('userToken') }}
     const { data } = await axios.get('/api/journeys', authHeader)

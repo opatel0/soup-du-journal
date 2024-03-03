@@ -4,6 +4,7 @@ import LandingPage from '../LandingPage'
 import AuthFormPage from '../AuthFormPage'
 import Dashboard from '../Dashboard'
 import ShowUserAccount from '../Show/User'
+import EditUserAccount from '../Show/User/Edit'
 import IndexJourneys from '../Index/Journeys'
 import ShowJourney from '../Show/Journey'
 import ShowExperience from '../Show/Experience'
@@ -59,6 +60,7 @@ export default function App() {
                         <Route path="/dashboard"element={<Dashboard updateExperienceDetails={setExperienceDetails} />} />
                         <Route path="/auth/:formType" element={<AuthFormPage setLoginStatus={setLoginStatus} />} />
                         <Route path="/account" element={<ShowUserAccount />} />
+                        <Route path="/account/edit" element={<EditUserAccount />} />
                         <Route path="/journeys" element={<IndexJourneys />} />
                         <Route path="/journey/:journeyId" element={<ShowJourney updateExperienceDetails={setExperienceDetails} />} />
                         <Route path="/createjourney" element={<CreateJourney />} />

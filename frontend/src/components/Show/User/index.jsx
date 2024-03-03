@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { getUser } from '../../../../utils/backend'
 
 export default function ShowJourney() {
@@ -23,6 +24,7 @@ export default function ShowJourney() {
     return (
         <>
             <h1>Account Info</h1>
+            <Link to="/account/edit"><button>Edit Account</button></Link>
             {accountEl}
         </>
     )
