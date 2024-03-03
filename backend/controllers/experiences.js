@@ -36,7 +36,7 @@ const authMiddleware = (req, res, next) => {
         // Return an error if the 'Authorization' header is missing or has the wrong format
         res.status(401).json({ message: 'Missing or invalid Authorization header' });
     }
-};
+}
 
 
 /* Routes

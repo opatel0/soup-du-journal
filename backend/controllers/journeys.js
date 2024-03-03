@@ -1,20 +1,55 @@
 /* Require modules
----------------------------------------------------------- */
+--------------------------------------------------------------- */
+const jwt = require('jwt-simple');
 const express = require('express')
 // Router allows us to handle routing outisde of server.js
 const router = express.Router()
 
 
 /* Require the db connection, and models
----------------------------------------------------------- */
+--------------------------------------------------------------- */
 const db = require('../models')
+
+
+/* Require the JWT config
+--------------------------------------------------------------- */
+const config = require('../../jwt.config.js')
+
+
+/* Middleware that checks if a JWT sent from the client is valid.
+   Used for all routes that require authorization
+--------------------------------------------------------------- */
+const authMiddleware = (req, res, next) => {
+    // Check if the 'Authorization' header is present and has the token
+    const token = req.headers.authorization;
+    if (token) {
+        try {
+            // Decode the token using the secret key and add the decoded payload to the request object
+            const decodedToken = jwt.decode(token, config.jwtSecret);
+            req.user = decodedToken;
+            next();
+        } catch (err) {
+            // Return an error if the token is invalid
+            res.status(401).json({ message: 'Invalid token' });
+        }
+    } else {
+        // Return an error if the 'Authorization' header is missing or has the wrong format
+        res.status(401).json({ message: 'Missing or invalid Authorization header' });
+    }
+}
 
 
 /* Routes
 ---------------------------------------------------------- */
-// Index journeys by user
+// Index journeys by searched user
 router.get('/:user/journeys', (req, res) => {
     db.Journey.find({ user: req.params.user })
+        .then(journeys => res.json(journeys))
+})
+
+// Index journeys by authenticated user
+router.get('/', authMiddleware, (req, res) => {
+    db.Journey.find({ user: req.user.id })
         .then(journeys => res.json(journeys))
 })
 

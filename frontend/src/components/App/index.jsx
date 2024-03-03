@@ -3,6 +3,7 @@ import { Routes, Route, Link, useNavigate } from 'react-router-dom'
 import LandingPage from '../LandingPage'
 import AuthFormPage from '../AuthFormPage'
 import Dashboard from '../Dashboard'
+import IndexJourneys from '../Index/Journeys'
 import ShowJourney from '../Show/Journey'
 import ShowExperience from '../Show/Experience'
 import CreateJourney from '../Create/Journey'
@@ -46,13 +47,14 @@ export default function App() {
                 <>
                     <nav>
                         <li className="nav"><Link to="/dashboard">Dashboard</Link></li>
-                        <li className="nav"><Link to="/createjourney">Create Journey</Link></li>
+                        <li className="nav"><Link to="/journeys">My Journeys</Link></li>
                         {logout}
                     </nav>
                     <Routes>
                         <Route path="/" element={<Dashboard loginStatus={loginStatus} />} />
                         <Route path="/dashboard"element={<Dashboard updateExperienceDetails={setExperienceDetails} />} />
                         <Route path="/auth/:formType" element={<AuthFormPage setLoginStatus={setLoginStatus} />} />
+                        <Route path="/journeys" element={<IndexJourneys />} />
                         <Route path="/journey/:journeyId" element={<ShowJourney updateExperienceDetails={setExperienceDetails} />} />
                         <Route path="/experience/:experienceId" element={<ShowExperience details={experienceDetails} />} />
                         <Route path="/createjourney" element={<CreateJourney />} />
