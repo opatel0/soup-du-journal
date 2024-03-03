@@ -1,20 +1,31 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { createJourney } from '../../../../utils/backend'
 
 export default function CreateJourney() {
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         title: '',
         description: ''
     })
+
     function handleInputChange(event) {
         setFormData({
             ...formData,
             [event.target.name]: event.target.value
         })
     }
+
+    function handleSubmit(event) {
+        event.preventDefault()
+        createJourney(formData)
+            .then(journey => navigate(`/journey/${journey._id}`))
+    }
+
     return (
         <>
             <h1>Create Journey</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <input
                     name="title"
                     placeholder="Title"

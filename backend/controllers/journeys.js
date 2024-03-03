@@ -60,15 +60,15 @@ router.get('/:journey', (req, res) => {
 })
 
 // Create new journey and append id to user journeys list
-router.post('/:user', async (req, res) => {
+router.post('/', authMiddleware, async (req, res) => {
     await db.Journey.create({
         title: req.body.title,
         description: req.body.description,
-        user: req.params.user
+        user: req.user.id
     })
         .then(async journey => {
             await db.User.findByIdAndUpdate(
-                req.params.user,
+                req.user.id,
                 { $push: {journeys: journey._id}},
                 { new: true }
             )
