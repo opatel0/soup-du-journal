@@ -38,3 +38,8 @@ export async function logIn(user) {
 
 /* AUTHORIZATION REQUESTS
 ------------------------------------------------------------------------ */
+export async function createExperience(experience, journeyId) {
+    const authHeader = { headers: {'Authorization': localStorage.getItem('userToken') }}
+    const { data } = await axios.post(`/api/experiences/${journeyId}`, experience, authHeader)
+    return data
+}

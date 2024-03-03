@@ -1,13 +1,43 @@
 /* Require modules
----------------------------------------------------------- */
+--------------------------------------------------------------- */
+const jwt = require('jwt-simple');
 const express = require('express')
 // Router allows us to handle routing outisde of server.js
 const router = express.Router()
 
 
 /* Require the db connection, and models
----------------------------------------------------------- */
+--------------------------------------------------------------- */
 const db = require('../models')
+
+
+/* Require the JWT config
+--------------------------------------------------------------- */
+const config = require('../../jwt.config.js')
+
+
+/* Middleware that checks if a JWT sent from the client is valid.
+   Used for all routes that require authorization
+--------------------------------------------------------------- */
+const authMiddleware = (req, res, next) => {
+    // Check if the 'Authorization' header is present and has the token
+    const token = req.headers.authorization;
+    if (token) {
+        try {
+            // Decode the token using the secret key and add the decoded payload to the request object
+            const decodedToken = jwt.decode(token, config.jwtSecret);
+            req.user = decodedToken;
+            next();
+        } catch (err) {
+            // Return an error if the token is invalid
+            res.status(401).json({ message: 'Invalid token' });
+        }
+    } else {
+        // Return an error if the 'Authorization' header is missing or has the wrong format
+        res.status(401).json({ message: 'Missing or invalid Authorization header' });
+    }
+};
+
 
 /* Routes
 ---------------------------------------------------------- */
@@ -36,8 +66,8 @@ router.get('/:experience', (req, res) => {
 })
 
 // Create experience and append to user/journey lists
-router.post('/:user/:journey', async (req, res) => {
-    await db.User.findById(req.params.user)
+router.post('/:journey', authMiddleware, async (req, res) => {
+    await db.User.findById(req.user.id)
         .then(async user => {
             await db.Journey.findById(req.params.journey)
                 .then(async journey => {
@@ -46,7 +76,7 @@ router.post('/:user/:journey', async (req, res) => {
                         content: req.body.content,
                         journeyTitle: journey.title,
                         username: user.username,
-                        userId: req.params.user,
+                        userId: user._id,
                         journeyId: req.params.journey
                     })
                         .then(async experience => {

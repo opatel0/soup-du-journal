@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { getJourney, getJourneyExperiences } from '../../../../utils/backend'
 
-export default function ShowJourney() {
+export default function ShowJourney({ updateExperienceDetails }) {
     const [details, setDetails] = useState({})
     const [experiences, setExperiences] = useState([])
     const params = useParams()
