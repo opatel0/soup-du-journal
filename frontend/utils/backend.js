@@ -50,6 +50,12 @@ export async function createJourney(journey) {
     return data
 }
 
+export async function editJourney(journey, journeyId) {
+    const authHeader = { headers: { 'Authorization': localStorage.getItem('userToken') }}
+    const { data } = await axios.put(`/api/journeys/${journeyId}`, journey, authHeader)
+    return data
+}
+
 export async function createExperience(experience, journeyId) {
     const authHeader = { headers: { 'Authorization': localStorage.getItem('userToken') }}
     const { data } = await axios.post(`/api/experiences/${journeyId}`, experience, authHeader)

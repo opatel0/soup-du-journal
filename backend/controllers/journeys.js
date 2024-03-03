@@ -77,13 +77,22 @@ router.post('/', authMiddleware, async (req, res) => {
 })
 
 // Edit journey
-router.put('/:journey', (req, res) => {
-    db.Journey.findByIdAndUpdate(
+router.put('/:journey', authMiddleware, async (req, res) => {
+    await db.Journey.findByIdAndUpdate(
         req.params.journey,
         req.body,
         { new: true }
     )
-        .then(journey => res.json(journey))
+        .then(journey => {
+            journey.experiences.forEach(async experience => {
+                await db.Experience.findByIdAndUpdate(
+                    experience,
+                    { journeyTitle: journey.title },
+                    { new: true }
+                )
+            })
+            res.json(journey)
+        })
 })
 
 // Delete journey, exeriences associated with journey, and associated journies per user

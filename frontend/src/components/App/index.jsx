@@ -7,6 +7,7 @@ import IndexJourneys from '../Index/Journeys'
 import ShowJourney from '../Show/Journey'
 import ShowExperience from '../Show/Experience'
 import CreateJourney from '../Create/Journey'
+import EditJourney from '../Show/Journey/Edit'
 import CreateExperience from '../Create/Experience'
 import './styles.css'
 
@@ -58,6 +59,7 @@ export default function App() {
                         <Route path="/journey/:journeyId" element={<ShowJourney updateExperienceDetails={setExperienceDetails} />} />
                         <Route path="/experience/:experienceId" element={<ShowExperience details={experienceDetails} />} />
                         <Route path="/createjourney" element={<CreateJourney />} />
+                        <Route path="/journey/:journeyId/edit" element={<EditJourney />} />
                         <Route path="/createexperience/:journeyId" element={<CreateExperience updateExperienceDetails={setExperienceDetails} />} />
                     </Routes>
                 </>
