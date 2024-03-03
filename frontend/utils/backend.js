@@ -56,6 +56,12 @@ export async function editJourney(journey, journeyId) {
     return data
 }
 
+export async function deleteJourney(journeyId) {
+    const authHeader = { headers: { 'Authorization': localStorage.getItem('userToken') }}
+    const { data } = await axios.delete(`/api/journeys/${journeyId}`, authHeader)
+    return data
+}
+
 export async function createExperience(experience, journeyId) {
     const authHeader = { headers: { 'Authorization': localStorage.getItem('userToken') }}
     const { data } = await axios.post(`/api/experiences/${journeyId}`, experience, authHeader)
