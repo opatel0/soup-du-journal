@@ -87,7 +87,7 @@ router.post('/:journey', authMiddleware, async (req, res) => {
                             )
                             .then(async () => {
                                 await db.User.findByIdAndUpdate(
-                                    req.params.user,
+                                    req.user.id,
                                     { $push: { experiences: experience._id }},
                                     { new: true }
                                 )

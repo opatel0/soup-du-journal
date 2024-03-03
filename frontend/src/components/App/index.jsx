@@ -9,6 +9,7 @@ import ShowExperience from '../Show/Experience'
 import CreateJourney from '../Create/Journey'
 import EditJourney from '../Show/Journey/Edit'
 import CreateExperience from '../Create/Experience'
+import EditExperience from '../Show/Experience/Edit'
 import './styles.css'
 
 export default function App() {
@@ -57,10 +58,11 @@ export default function App() {
                         <Route path="/auth/:formType" element={<AuthFormPage setLoginStatus={setLoginStatus} />} />
                         <Route path="/journeys" element={<IndexJourneys />} />
                         <Route path="/journey/:journeyId" element={<ShowJourney updateExperienceDetails={setExperienceDetails} />} />
-                        <Route path="/experience/:experienceId" element={<ShowExperience details={experienceDetails} />} />
                         <Route path="/createjourney" element={<CreateJourney />} />
                         <Route path="/journey/:journeyId/edit" element={<EditJourney />} />
+                        <Route path="/experience/:experienceId" element={<ShowExperience details={experienceDetails} />} />
                         <Route path="/createexperience/:journeyId" element={<CreateExperience updateExperienceDetails={setExperienceDetails} />} />
+                        <Route path="/experience/:experienceId/edit" element={<EditExperience />} />
                     </Routes>
                 </>
             }
