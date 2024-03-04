@@ -73,13 +73,25 @@ router.post('/login', async (req, res) => {
 })
 
 // Edit user account info
-router.put('/', authMiddleware, (req, res) => {
-    db.User.findByIdAndUpdate(
+router.put('/', authMiddleware, async (req, res) => {
+    await db.User.findByIdAndUpdate(
         req.user.id,
         req.body,
         { new: true }
     )
-        .then(user => res.json(user))
+        .then(async user => {
+            await db.Experience.find({ userId: user._id })
+                .then(async experiences => {
+                    experiences.forEach(experience => {
+                        db.Experience.findByIdAndUpdate(
+                            experience._id,
+                            { username: user.username },
+                            { new: true }
+                        ).then()
+                    })
+                })
+            res.json(user)
+        })
 })
 
 // Delete user account and all associated journeys/experiences
