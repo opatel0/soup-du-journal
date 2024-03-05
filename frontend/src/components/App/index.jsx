@@ -48,12 +48,12 @@ export default function App() {
                 </Routes>
             }
             {loginStatus && 
-                <div className="h-fit w-fit m-4">
-                    <nav className="flex flex-col w-full mb-4 md:justify-between md:flex-row">
-                        <li className="nav"><Link to="/dashboard"><h1 className="header">Soup du Journal</h1></Link></li>
+                <div className="flex flex-col h-fit w-fit m-4">
+                    <nav className="nav flex md:justify-between md:flex-row flex-col w-full mb-4">
+                        <li><Link to="/dashboard"><h1 className="header">Soup du Journal</h1></Link></li>
                         <div className="flex items-center justify-center">
-                            <li className="nav md:text-xl"><Link to="/journeys">My Journeys</Link></li>
-                            <li className="nav md:text-xl"><Link to="/account">My Account</Link></li>
+                            <li className="md:text-xl"><Link to="/journeys">My Journeys</Link></li>
+                            <li className="md:text-xl"><Link to="/account">My Account</Link></li>
                             {logout}
                         </div>
                     </nav>
