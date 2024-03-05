@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+.header {
+    font-family: 'Satisfy';
+    font-size: clamp(1rem, 1rem + 8vh, 8rem);
+    text-align: center;
+}
