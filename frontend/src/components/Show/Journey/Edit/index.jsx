@@ -31,23 +31,25 @@ export default function EditJourney() {
     }
 
     return (
-        <>
-            <h1>Edit Journey</h1>
-            <form onSubmit={handleSubmit}>
+        <div className="flex flex-col h-screen w-screen">
+            <h2 className="header text-xl mb-4 md:text-2xl">Edit Journey</h2>
+            <form className="flex flex-col items-center" onSubmit={handleSubmit}>
                 <input
                     name="title"
                     placeholder="Title"
                     value={formData.title}
                     onChange={handleInputChange}
+                    className="w-3/4 mb-8 text-2xl"
                 />
                 <textarea
                     name="description"
                     placeholder="Description"
                     value={formData.description}
                     onChange={handleInputChange}
+                    className="w-3/4 mb-8 text-2xl"
                 />
-                <button type="submit">Edit Journey</button>
+                <button className="bg-white w-2/5 mb-8 p-4 text-2xl rounded-md" type="submit">Edit Journey</button>
             </form>
-        </>
+        </div>
     )
 }
