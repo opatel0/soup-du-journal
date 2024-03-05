@@ -29,7 +29,7 @@ export default function App() {
     if (localStorage.length > 0) {
         logout = 
             <a><li 
-                className='nav'
+                className="nav md:text-xl"
                 onClick={() => {
                     localStorage.clear()
                     setLoginStatus(false)
@@ -48,28 +48,32 @@ export default function App() {
                 </Routes>
             }
             {loginStatus && 
-                <>
-                    <nav>
-                        <li className="nav"><Link to="/dashboard">Dashboard</Link></li>
-                        <li className="nav"><Link to="/journeys">My Journeys</Link></li>
-                        <li className="nav"><Link to="/account">My Account</Link></li>
-                        {logout}
+                <div className="h-fit w-fit m-4">
+                    <nav className="flex w-full justify-between">
+                        <li className="nav"><Link to="/dashboard"><h1 className="header">Soup du Journal</h1></Link></li>
+                        <div className="flex items-center">
+                            <li className="nav md:text-xl"><Link to="/journeys">My Journeys</Link></li>
+                            <li className="nav md:text-xl"><Link to="/account">My Account</Link></li>
+                            {logout}
+                        </div>
                     </nav>
-                    <Routes>
-                        <Route path="/" element={<Dashboard loginStatus={loginStatus} />} />
-                        <Route path="/dashboard"element={<Dashboard updateExperienceDetails={setExperienceDetails} />} />
-                        <Route path="/auth/:formType" element={<AuthFormPage setLoginStatus={setLoginStatus} />} />
-                        <Route path="/account" element={<ShowUserAccount setLoginStatus={setLoginStatus} />} />
-                        <Route path="/account/edit" element={<EditUserAccount />} />
-                        <Route path="/journeys" element={<IndexJourneys />} />
-                        <Route path="/journey/:journeyId" element={<ShowJourney updateExperienceDetails={setExperienceDetails} />} />
-                        <Route path="/createjourney" element={<CreateJourney />} />
-                        <Route path="/journey/:journeyId/edit" element={<EditJourney />} />
-                        <Route path="/experience/:experienceId" element={<ShowExperience details={experienceDetails} />} />
-                        <Route path="/createexperience/:journeyId" element={<CreateExperience updateExperienceDetails={setExperienceDetails} />} />
-                        <Route path="/experience/:experienceId/edit" element={<EditExperience />} />
-                    </Routes>
-                </>
+                    <div className="flex justify-center">
+                        <Routes>
+                            <Route path="/" element={<Dashboard loginStatus={loginStatus} />} />
+                            <Route path="/dashboard"element={<Dashboard updateExperienceDetails={setExperienceDetails} />} />
+                            <Route path="/auth/:formType" element={<AuthFormPage setLoginStatus={setLoginStatus} />} />
+                            <Route path="/account" element={<ShowUserAccount setLoginStatus={setLoginStatus} />} />
+                            <Route path="/account/edit" element={<EditUserAccount />} />
+                            <Route path="/journeys" element={<IndexJourneys />} />
+                            <Route path="/journey/:journeyId" element={<ShowJourney updateExperienceDetails={setExperienceDetails} />} />
+                            <Route path="/createjourney" element={<CreateJourney />} />
+                            <Route path="/journey/:journeyId/edit" element={<EditJourney />} />
+                            <Route path="/experience/:experienceId" element={<ShowExperience details={experienceDetails} />} />
+                            <Route path="/createexperience/:journeyId" element={<CreateExperience updateExperienceDetails={setExperienceDetails} />} />
+                            <Route path="/experience/:experienceId/edit" element={<EditExperience />} />
+                        </Routes>
+                    </div>
+                </div>
             }
         </>
     )

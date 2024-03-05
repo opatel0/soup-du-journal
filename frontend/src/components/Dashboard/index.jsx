@@ -22,9 +22,9 @@ export default function Dashboard({ updateExperienceDetails }) {
     )}) 
 
     return (
-        <>
+        <div className="flex flex-col w-3/4 justify-center">
             <h1>Dashboard</h1>
             {experiencesEl}
-        </>
+        </div>
     )
 }
