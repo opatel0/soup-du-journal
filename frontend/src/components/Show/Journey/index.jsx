@@ -24,21 +24,22 @@ export default function ShowJourney({ updateExperienceDetails }) {
     experiencesEl = experiences.map(experience => {
         let timeCreated = new Date(experience.createdAt)
         return (
-            <div key={experience._id}>
-                <Link to={`/experience/${experience._id}`} onClick={() => updateExperienceDetails(experience)}><h3>{experience.title}</h3></Link>
+            <div className="bg-white mb-4 p-1 rounded-md" key={experience._id}>
+                <Link to={`/experience/${experience._id}`} onClick={() => updateExperienceDetails(experience)}><h3 className="font-bold text-lg">{experience.title}</h3></Link>
                 <p>{experience.content}</p>
-                <p>Created: {timeCreated.toLocaleString()}</p>
+                <p className="text-gray-400 text-sm">Created: {timeCreated.toLocaleString()}</p>
             </div>
     )}) 
 
     return (
-        <>
-            <h1>{details.title}</h1>
+        <div>
+            <h2 className="header text-xl mb-4 md:text-2xl">{details.title}</h2>
+            <Link to={`/journey/${details._id}/edit`}><button className="bg-white mb-4 mr-1 p-1 text-lg rounded-md">Edit Journey</button></Link>
+            <button className="bg-white p-1 text-lg rounded-md" onClick={handleDelete}>Delete Journey</button>
             <p>{details.description}</p>
-            <Link to={`/journey/${details._id}/edit`}><button>Edit Journey</button></Link>
-            <button onClick={handleDelete}>Delete Journey</button>
-            <Link to={`/createexperience/${details._id}`}><button>Create Experience</button></Link>
+            <h2 className="header text-xl mb-4 md:text-2xl">Experiences</h2>
+            <Link to={`/createexperience/${details._id}`}><button className="bg-white mb-8 p-4 text-2xl rounded-md">Create Experience</button></Link>
             {experiencesEl}
-        </>
+        </div>
     )
 }
