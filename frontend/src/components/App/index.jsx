@@ -49,7 +49,7 @@ export default function App() {
             }
             {loginStatus && 
                 <div className="h-fit w-fit m-4">
-                    <nav className="flex flex-col w-full md:justify-between md:flex-row">
+                    <nav className="flex flex-col w-full mb-4 md:justify-between md:flex-row">
                         <li className="nav"><Link to="/dashboard"><h1 className="header">Soup du Journal</h1></Link></li>
                         <div className="flex items-center justify-center">
                             <li className="nav md:text-xl"><Link to="/journeys">My Journeys</Link></li>
@@ -57,7 +57,7 @@ export default function App() {
                             {logout}
                         </div>
                     </nav>
-                    <div className="flex justify-center">
+                    <div className="flex justify-center items-center">
                         <Routes>
                             <Route path="/" element={<Dashboard loginStatus={loginStatus} />} />
                             <Route path="/dashboard"element={<Dashboard updateExperienceDetails={setExperienceDetails} />} />
