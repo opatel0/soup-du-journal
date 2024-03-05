@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { signUp, logIn } from '../../../utils/backend'
+import './styles.css'
 
 export default function AuthFormPage({ setLoginStatus }) {
     const { formType } = useParams()
@@ -33,14 +34,15 @@ export default function AuthFormPage({ setLoginStatus }) {
     formType === 'login' ? actionText = 'Log In' : actionText = 'Sign Up'
 
     return (
-        <>
-            <h1>{actionText}</h1>
-            <form onSubmit={handleSubmit}>
+        <div className="flex flex-col h-screen w-screen justify-center">
+            <h1 className="header mb-8">Soup du Journal</h1>
+            <form className="flex flex-col items-center" onSubmit={handleSubmit}>
                 <input
                     name="username"
                     placeholder="username"
                     value={formData.username}
                     onChange={handleInputChange}
+                    className="w-3/4 mb-8 text-2xl"
                 />
                 <input
                     name="password"
@@ -48,9 +50,10 @@ export default function AuthFormPage({ setLoginStatus }) {
                     placeholder="password"
                     value={formData.password}
                     onChange={handleInputChange}
+                    className="w-3/4 mb-8 text-2xl"
                 />
-                <button type="submit">{actionText}</button>
+                <button className="bg-white w-2/5 mb-8 p-4 text-2xl rounded-md" type="submit">{actionText}</button>
             </form>
-        </>
+        </div>
     )
 }
