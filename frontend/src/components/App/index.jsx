@@ -49,9 +49,9 @@ export default function App() {
             }
             {loginStatus && 
                 <div className="h-fit w-fit m-4">
-                    <nav className="flex w-full justify-between">
+                    <nav className="flex flex-col w-full md:justify-between md:flex-row">
                         <li className="nav"><Link to="/dashboard"><h1 className="header">Soup du Journal</h1></Link></li>
-                        <div className="flex items-center">
+                        <div className="flex items-center justify-center">
                             <li className="nav md:text-xl"><Link to="/journeys">My Journeys</Link></li>
                             <li className="nav md:text-xl"><Link to="/account">My Account</Link></li>
                             {logout}
