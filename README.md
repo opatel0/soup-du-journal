@@ -12,11 +12,8 @@ Vite/React, JSX, Express, Mongoose, Node
 ### Login
 <img src="./public/login.jpg">
 
-### Dashboard - Mobile
-<img src="./public/dash-mobile.jpg">
-
-### Dashboard - PC
-<img src="./public/dash-pc.jpg">
+### Dashboard
+<img src="./public/dash.jpg">
 
 <details>
     <summary>Planning Resources</summary>
