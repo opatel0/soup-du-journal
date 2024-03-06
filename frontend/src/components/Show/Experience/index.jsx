@@ -22,15 +22,18 @@ export default function ShowExperience(props) {
     let timeCreated = new Date(details.createdAt)
     let timeUpdated = new Date(details.updatedAt)
     return (
-        <div>
-            <Link to={`/journey/${details.journeyId}`}><h2>Journal: {details.journeyTitle}</h2></Link>
-            <h3>{details.title}</h3>
-            <p>By: {details.username}</p>
-            <Link to={`/experience/${details._id}/edit`}><button>Edit Experience</button></Link>
-            <button onClick={handleDelete}>Delete Experience</button>
-            <p>{details.content}</p>
-            <p>Created: {timeCreated.toLocaleString()}</p>
-            {timeUpdated > timeCreated && <p>Last edited: {timeUpdated.toLocaleString()}</p>}
+        <div className="flex flex-col items-center">
+            <h2 className="header mb-4 text-3xl">{details.title}</h2>
+            <div className="bg-white mb-4 p-1 rounded-md">
+                <p className="text-xl">{details.content}</p><br/>
+                <p className="text-sm">Logged by {details.username} in <Link to={`/journey/${details.journeyId}`}><span className="text-lime-600 hover:text-green-500">{details.journeyTitle}</span></Link></p>
+                <p className="text-gray-400 text-sm">Created: {timeCreated.toLocaleString()}</p>
+                {timeUpdated > timeCreated && <p className="text-gray-400 text-sm">Last edited: {timeUpdated.toLocaleString()}</p>}
+            </div>
+            <div>
+                <Link to={`/experience/${details._id}/edit`}><button className="bg-white mr-8 p-4 text-2xl rounded-md">Edit</button></Link>
+                <button onClick={handleDelete} className="bg-white ml-8 p-4 text-2xl rounded-md">Delete</button>
+            </div>
         </div>
     )
 }
