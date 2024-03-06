@@ -29,7 +29,7 @@ export default function App() {
     if (localStorage.length > 0) {
         logout = 
             <a><li 
-                className="nav md:text-xl"
+                className="nav mr-4 md:text-xl hover:text-white"
                 onClick={() => {
                     localStorage.clear()
                     setLoginStatus(false)
@@ -49,11 +49,11 @@ export default function App() {
             }
             {loginStatus && 
                 <div className="flex flex-col h-fit w-fit m-4">
-                    <nav className="nav flex md:justify-between md:flex-row flex-col w-full mb-4">
+                    <nav className="nav flex flex-col w-full mb-4 md:justify-between md:flex-row">
                         <li><Link to="/dashboard"><h1 className="header">Soup du Journal</h1></Link></li>
                         <div className="flex items-center justify-center">
-                            <li className="md:text-xl"><Link to="/journeys">My Journeys</Link></li>
-                            <li className="md:text-xl"><Link to="/account">My Account</Link></li>
+                            <li className="mr-4 md:text-xl hover:text-white"><Link to="/journeys">My Journeys</Link></li>
+                            <li className="mr-4 md:text-xl hover:text-white"><Link to="/account">My Account</Link></li>
                             {logout}
                         </div>
                     </nav>

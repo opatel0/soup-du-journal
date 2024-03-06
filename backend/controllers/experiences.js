@@ -47,12 +47,6 @@ router.get('/', (req, res) => {
         .then(experiences => res.json(experiences))
 })
 
-// Index experiences per user
-router.get('/:user/userexperiences', (req, res) => {
-    db.Experience.find({ userId: req.params.user })
-        .then(experiences => res.json(experiences))
-})
-
 // Index experiences per journey
 router.get('/:journey/journeyexperiences', (req, res) => {
     db.Experience.find({ journeyId: req.params.journey })
