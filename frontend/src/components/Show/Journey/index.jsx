@@ -34,12 +34,11 @@ export default function ShowJourney({ updateExperienceDetails }) {
     return (
         <div>
             <h2 className="header text-xl mb-4 md:text-2xl">{details.title}</h2>
-            <Link to={`/journey/${details._id}/edit`}><button className="bg-white mb-4 mr-1 p-1 text-lg rounded-md">Edit Journey</button></Link>
-            <button className="bg-white p-1 text-lg rounded-md" onClick={handleDelete}>Delete Journey</button>
-            <p>{details.description}</p>
-            <h2 className="header text-xl mb-4 md:text-2xl">Experiences</h2>
+            <p className="mb-4">{details.description}</p>
             <Link to={`/createexperience/${details._id}`}><button className="bg-white mb-8 p-4 text-2xl rounded-md">Create Experience</button></Link>
             {experiencesEl}
+            <Link to={`/journey/${details._id}/edit`}><button className="bg-white mb-4 mr-1 p-1 text-lg rounded-md">Edit Journey</button></Link>
+            <button className="bg-white p-1 text-lg rounded-md" onClick={handleDelete}>Delete Journey</button>
         </div>
     )
 }

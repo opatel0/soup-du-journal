@@ -24,20 +24,22 @@ export default function ShowJourney({ setLoginStatus }) {
     let accountEl
     if (details.username) {
         accountEl =
-            <>
+            <div className="bg-white mb-4 p-1 rounded-md">
                 <p>Username: {details.username}</p>
                 <p>Password: {details.password}</p>
                 <p>Journey Count: {details.journeys.length}</p>
                 <p>Experiences Count: {details.experiences.length}</p>
-            </>
+            </div>
     }
 
     return (
-        <>
-            <h1>Account Info</h1>
-            <Link to="/account/edit"><button>Edit Account</button></Link>
-            <button onClick={handleDelete}>Delete Account</button>
+        <div>
+            <h2 className="header text-xl mb-4 md:text-2xl">Account Info</h2>
             {accountEl}
-        </>
+            <div>
+                <Link to="/account/edit"><button className="bg-white mr-8 p-4 text-2xl rounded-md">Edit Account</button></Link>
+                <button className="bg-white mr-8 p-4 text-2xl rounded-md" onClick={handleDelete}>Delete Account</button>
+            </div>
+        </div>
     )
 }
