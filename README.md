@@ -3,6 +3,21 @@
 Vite/React, JSX, Express, Mongoose, Node
 
 ## Highlights
+### Landing Page - Mobile
+<img src="./public/landing-mobile.jpg">
+
+### Landing Page - PC
+<img src="./public/landing-pc.jpg">
+
+### Login
+<img src="./public/login.jpg">
+
+### Dashboard - Mobile
+<img src="./public/dash-mobile.jpg">
+
+### Dashboard - PC
+<img src="./public/dash-pc.jpg">
+
 <details>
     <summary>Planning Resources</summary>
     <h1>User Stories</h1>
@@ -28,7 +43,7 @@ Vite/React, JSX, Express, Mongoose, Node
     <summary>Project Status</summary>
     <h2>Unsolved Problems and Development Hurdles</h2>
     <ul>
-        <li>Need to implement conditionally rendered edit/create/delete routes</li>
+        <li>Need to implement conditionally rendered edit/create/delete buttons/routes</li>
     </ul>
     <h2>Next Steps</h2>
     <ul>
@@ -36,6 +51,13 @@ Vite/React, JSX, Express, Mongoose, Node
         </li>Implement keyword search feature</li>
     </ul>
 </details>
+
+## Installation Instructions
+<ol>
+    <li>Clone repo and run the following in root folder to install project dependencies<pre>npm i</pre></li>
+    <li>Create MongoDB account and add connection string to environment variables</li>
+    <li>Create secret key for JWTs in environment variables</li>
+</ol>
 
 ## Route Tables
 ### Server Side CRUD Routes
