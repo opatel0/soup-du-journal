@@ -1,4 +1,5 @@
 # Soup Du Journal 🍜
+[View deployed site here](https://soup-du-journal-eebf0083428a.herokuapp.com/)
 ## Technologies Used
 Vite/React, JSX, Express, Mongoose, Node
 

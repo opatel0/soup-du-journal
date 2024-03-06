@@ -22,7 +22,7 @@ export default function ShowExperience(props) {
     let timeCreated = new Date(details.createdAt)
     let timeUpdated = new Date(details.updatedAt)
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col w-3/4 justify-center">
             <h2 className="header mb-4 text-3xl">{details.title}</h2>
             <div className="bg-white mb-4 p-1 rounded-md">
                 <p className="text-xl">{details.content}</p><br/>

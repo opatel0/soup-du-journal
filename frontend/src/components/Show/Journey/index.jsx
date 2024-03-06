@@ -32,7 +32,7 @@ export default function ShowJourney({ updateExperienceDetails }) {
     )}) 
 
     return (
-        <div>
+        <div className="flex flex-col w-3/4 justify-center">
             <h2 className="header text-xl mb-4 md:text-2xl">{details.title}</h2>
             <p className="mb-4">{details.description}</p>
             <Link to={`/createexperience/${details._id}`}><button className="bg-white mb-8 p-4 text-2xl rounded-md">Create Experience</button></Link>
